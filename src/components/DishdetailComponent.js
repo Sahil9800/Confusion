@@ -6,10 +6,10 @@ class Dishdetail extends Component {
                     return(
                         <div className="col-12 col-md-5 m-1">
                         <Card>
-                           <CardImg width="100%" src={this.props.dish.image} alt={this.props.dish.name} />
+                           <CardImg width="100%" src={dish.image} alt={dish.name} />
                            <CardBody>
-                              <CardTitle>{this.props.dish.name}</CardTitle>
-                              <CardText>{this.props.dish.description}</CardText>
+                              <CardTitle>{dish.name}</CardTitle>
+                              <CardText>{dish.description}</CardText>
                            </CardBody>
                         </Card>
                         </div>
@@ -26,11 +26,13 @@ class Dishdetail extends Component {
                 if(comments!= null) {
                     const commentListItem = comments.map((komment) => {
                         return(
+                            <div>
                             <li key={komment.id}>
                                 <p>{komment.comment}</p>
                                 <p>-- {komment.author},
-                                {komment.date}</p>
+                                {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(komment.date)))}</p>
                             </li>
+                            </div>
                         );
                     });
                     return(
@@ -64,7 +66,6 @@ class Dishdetail extends Component {
                   return(<div></div>);
               }
             }
-
 
 
 }
